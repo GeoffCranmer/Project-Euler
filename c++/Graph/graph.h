@@ -28,10 +28,17 @@ template <typename value_type> class Graph {
     void addVertex(value_type);
     void addEdge(int, int);
 
-    class iterator {
-    
-        
-    
+    class iterator : public std::iterator<std::forward_iterator_tag, Vertex> {
+      private:
+        Vertex* ptr;
+      public:
+        iterator(Vertex*);
+        iterator(const iterator&);
+        iterator operator=(const iterator&);
+        iterator& operator++();
+        bool operator==(const iterator&);
+        bool operator!=(const iterator&);
+        Vertex& operator*();
     };
 
 };
