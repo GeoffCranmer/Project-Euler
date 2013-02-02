@@ -61,13 +61,19 @@ def num_letters(n):
     elif n == 1000:
         return 11 # one thousand
     elif n < 100:
+        # num_letters(tens place) + num_letters(ones place)
         return num_letters(n - (n % 10)) + num_letters(n % 10)
+    elif n % 100 == 0:
+        # num_letters(hundreds place) + "hundred"
+        return num_letters(n / 100) + 7;
     else:
+        # num_letters(hundreds place) + "hundred and"
+        # + num_letters(tens and ones)
         return num_letters(floor(n / 100)) + 10 + num_letters(n % 100)
 
 if __name__ == "__main__":
     sum = 0
-    for i in range(1, 1000):
+    for i in range(1, 1001):
         sum += num_letters(i)
     print(sum)
     
