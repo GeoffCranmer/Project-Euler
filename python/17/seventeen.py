@@ -2,7 +2,7 @@
 from math import floor
 
 def numletters(n):
-    """Find the number of letters in the number n."""
+    """Find the number of letters in the number n, when n is between 1 and 1000, inclusive."""
     
     if n == 0:
         return 0 
