@@ -1,7 +1,9 @@
 # for each digit in the number
 from math import floor
 
-def num_letters(n):
+def numletters(n):
+    """Find the number of letters in the number n."""
+    
     if n == 0:
         return 0 
     elif n == 1:
@@ -62,18 +64,24 @@ def num_letters(n):
         return 11 # one thousand
     elif n < 100:
         # num_letters(tens place) + num_letters(ones place)
-        return num_letters(n - (n % 10)) + num_letters(n % 10)
+        return numletters(n - (n % 10)) + numletters(n % 10)
     elif n % 100 == 0:
         # num_letters(hundreds place) + "hundred"
-        return num_letters(n / 100) + 7;
+        return numletters(n / 100) + 7;
     else:
         # num_letters(hundreds place) + "hundred and"
         # + num_letters(tens and ones)
-        return num_letters(floor(n / 100)) + 10 + num_letters(n % 100)
+        return numletters(floor(n / 100)) + 10 + numletters(n % 100)
+
+def sumnumletters(start, end):
+    """Find sum of the number of letters in all numbers from start to end (inclusive), written out in words."""
+
+    sum = 0
+    for i in range(start, end + 1):
+        sum += numletters(i)
+    return sum
 
 if __name__ == "__main__":
-    sum = 0
-    for i in range(1, 1001):
-        sum += num_letters(i)
-    print(sum)
+    print(sumnumletters(1, 1000))
+
     
